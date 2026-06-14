@@ -1,103 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="educss.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
-    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Voting System 2026</title>
 
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#eef3ff;
+    padding:20px;
+}
+
+.header{
+    background:#002b80;
+    color:white;
+    text-align:center;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.stats{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.card{
+    flex:1;
+    min-width:220px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    background:#002b80;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.btn:hover{
+    background:#0044cc;
+}
+
+.btn:disabled{
+    background:#999;
+    cursor:not-allowed;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:15px;
+}
+
+.college{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.college h3{
+    color:#002b80;
+    margin-bottom:10px;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.bar{
+    height:100%;
+    width:0%;
+    background:#0044cc;
+    transition:width .2s;
+}
+
+.ranking{
+    background:white;
+    margin-top:25px;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+th{
+    background:#002b80;
+    color:white;
+}
+
+#winner{
+    margin-top:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    color:green;
+}
+
+.status{
+    color:#e67e22;
+    font-weight:bold;
+    margin-top:10px;
+}
+</style>
 </head>
+
 <body>
 
+<div class="header">
+    <h1>🏫 College Voting System 2026</h1>
+    <p>500 Students Live Voting Simulation</p>
+</div>
 
- <img src="logo.png" style="margin-top: -80px;">
-<ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="Coarses.html">Coarses</a></li>
-  <li><a href="Election.html">Elections</a></li>
-  <li><a href="#about">About</a></li>
-</ul>
-    <div class="container">
-   <div class="slide">
-             <div class="item" style="background-image: url(M3.jpg);">
-                <div class="content">
-                   
-                </div>
-            </div>
-            <div class="item" style="background-image: url(M1.jpg);">
-                <div class="content">
-                
-                    
-                </div>
-            </div>
-            <div class="item" style="background-image: url(Results.png);">
-                <div class="content">
-                </div>
-            </div>
-            <div class="item" style="background-image: url(M2.jpg);">
-                <div class="content">
-                    
-                </div>
-            </div>
-            <div class="item" style="background-image: url(M4.png);">
-                <div class="content">
-                
-                </div>
-            </div>
-            
+<div class="stats">
 
+    <div class="card">
+        <h2 id="remaining">500</h2>
+        <p>Remaining Votes</p>
+    </div>
+
+    <div class="card">
+        <h2>10</h2>
+        <p>Total Colleges</p>
+    </div>
+
+    <div class="card">
+
+        <div class="buttons">
+            <button class="btn" id="startBtn">Start Voting</button>
+            <button class="btn" id="pauseBtn" disabled>Pause</button>
         </div>
 
-        <div class="button">
-            <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
-            <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        
-    </div><br><br><br><br><br><br> <br><br>
-    
-     
-      <h1 style="font-size: 90px; text-align: center;">Position Holders</h1>
-<div class="d-flex justify-content-center">
-        <div class="containers">
-            <div class="drop" style="--clr:#ff0f5b">
-                <div class="contents">
-                    <h2>01</h2>
-                    
-                    <a href="#">1078</a>
-                </div>
-            </div>
-            <div class="containerss">
-            <div class="drop" style="--clr:#be01fe">
-                <div class="contents">
-                    <h2>02</h2>
-                   
-                    <a href="#">1055</a>
-                </div>
-            </div>
-        </div>
-    </div></div>
+        <p class="status" id="status">Ready</p>
 
-    <div class = "contact-footer">
-        <h3>Follow Us</h3>
-        <div class = "social-links">
-          <a href = "#" class = "fab fa-facebook-f"></a>
-          <a href = "#" class = "fab fa-twitter"></a>
-          <a href = "#" class = "fab fa-instagram"></a>
-          <a href = "#" class = "fab fa-linkedin"></a>
-          <a href = "#" class = "fab fa-youtube"></a>
+    </div>
+
+</div>
+
+<div class="grid" id="collegeGrid"></div>
+
+<div class="ranking">
+
+    <h2>📊 Live Ranking</h2>
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>College</th>
+                <th>Votes</th>
+            </tr>
+        </thead>
+        <tbody id="rankingBody"></tbody>
+    </table>
+
+    <div id="winner"></div>
+
+</div>
+
+<script>
+
+const colleges = [
+"Fast Solutions College",
+"Technical College",
+"The Brains College",
+"Commerce College",
+"Aptech College",
+];
+
+let data = [];
+let interval;
+let votingRunning = false;
+let paused = false;
+let remainingVotes = 500;
+
+const grid = document.getElementById("collegeGrid");
+const startBtn = document.getElementById("startBtn");
+const pauseBtn = document.getElementById("pauseBtn");
+
+colleges.forEach((name,index)=>{
+
+    data.push({ name:name, votes:0 });
+
+    grid.innerHTML += `
+    <div class="college">
+        <h3>${name}</h3>
+        <p>Votes: <span id="count${index}">0</span></p>
+        <div class="progress">
+            <div class="bar" id="bar${index}"></div>
         </div>
-      </div>
-    
+    </div>
+    `;
+});
 
+function updateDisplay(){
 
-    
-    <script src="edujava.js"></script>
+    data.forEach((college,index)=>{
+
+        document.getElementById("count"+index).innerText = college.votes;
+
+        document.getElementById("bar"+index).style.width =
+        (college.votes/500)*100 + "%";
+    });
+
+    updateRanking();
+}
+
+function updateRanking(){
+
+    let ranking = [...data].sort((a,b)=>b.votes-a.votes);
+
+    let html = "";
+
+    ranking.forEach((item,index)=>{
+
+        html += `
+        <tr>
+            <td>${index+1}</td>
+            <td>${item.name}</td>
+            <td>${item.votes}</td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("rankingBody").innerHTML = html;
+}
+
+function runVoting(){
+
+    interval = setInterval(()=>{
+
+        if(!votingRunning || paused) return;
+
+        if(remainingVotes <= 0){
+
+            clearInterval(interval);
+            votingRunning = false;
+
+            let winner = [...data].sort((a,b)=>b.votes-a.votes)[0];
+
+            document.getElementById("winner").innerHTML =
+            "🏆 Winner: " + winner.name + " (" + winner.votes + " Votes)";
+
+            document.getElementById("status").innerText = "Voting Finished";
+
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+
+            return;
+        }
+
+        let randomCollege = Math.floor(Math.random()*colleges.length);
+
+        data[randomCollege].votes++;
+        remainingVotes--;
+
+        document.getElementById("remaining").innerText = remainingVotes;
+
+        updateDisplay();
+
+    },20);
+}
+
+startBtn.addEventListener("click",()=>{
+
+    votingRunning = true;
+    paused = false;
+    remainingVotes = 500;
+
+    data.forEach(c => c.votes = 0);
+
+    document.getElementById("winner").innerHTML = "";
+    document.getElementById("status").innerText = "Voting Started...";
+
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+    pauseBtn.innerText = "Pause";
+
+    updateDisplay();
+    runVoting();
+});
+
+pauseBtn.addEventListener("click",()=>{
+
+    if(!votingRunning) return;
+
+    paused = !paused;
+
+    if(paused){
+        pauseBtn.innerText = "Resume";
+        document.getElementById("status").innerText = "Paused";
+    } else {
+        pauseBtn.innerText = "Pause";
+        document.getElementById("status").innerText = "Voting Started...";
+    }
+});
+
+updateRanking();
+
+</script>
+
+</body>
+</html>
     
 </body>
 </html>
